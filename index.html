@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GS Haber - Galatasaray'ın En Güncel Haberleri</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --gs-red: #FF0000;
+            --gs-yellow: #FFCC00;
+            --gs-light-red: #FF3333;
+        }
+        
+        body {
+            background-color: var(--gs-red);
+        }
+        
+        .header {
+            background-color: var(--gs-red);
+            color: var(--gs-yellow);
+            padding: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            margin-left: 20px;
+        }
+        
+        .logo {
+            width: 60px;
+            height: 60px;
+            background-color: var(--gs-yellow);
+            border-radius: 50%;
+            margin-right: 15px;
+        }
+        
+        .site-title {
+            font-size: 2rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+        
+        .search-section {
+            margin-right: 20px;
+            display: flex;
+            position: relative;
+            width: 300px;
+        }
+        
+        .search-box {
+            width: 100%;
+            padding: 10px 15px;
+            border: 2px solid var(--gs-yellow);
+            border-radius: 25px;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .search-btn {
+            position: absolute;
+            right: 0;
+            height: 100%;
+            width: 50px;
+            background-color: var(--gs-yellow);
+            border: none;
+            border-radius: 0 25px 25px 0;
+            cursor: pointer;
+        }
+        
+        .search-btn:hover {
+            background-color: #e6bd00;
+        }
+        
+        .nav-bar {
+            background-color: var(--gs-yellow);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 20px;
+            align-items: center;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-menu li {
+            position: relative;
+        }
+        
+        .nav-menu li a {
+            display: block;
+            padding: 15px 20px;
+            color: var(--gs-red);
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-menu li a:hover {
+            background-color: var(--gs-red);
+            color: var(--gs-yellow);
+        }
+        
+        .auth-buttons {
+            display: flex;
+        }
+        
+        .auth-btn {
+            padding: 10px 20px;
+            margin-left: 10px;
+            background-color: var(--gs-red);
+            color: var(--gs-yellow);
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .auth-btn:hover {
+            background-color: #CC0000;
+        }
+        
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .lion-background {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .lion-background::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('lion-silhouette.png');
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            opacity: 0.1;
+            z-index: -1;
+        }
+        
+        .featured-news {
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .section-title {
+            position: relative;
+            font-size: 1.8rem;
+            color: var(--gs-yellow);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: bold;
+        }
+        
+        .main-feature {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            background-color: var(--gs-red);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 3px solid var(--gs-yellow);
+        }
+        
+        .featured-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .categories {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .category-card {
+            position: relative;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+            border: 2px solid var(--gs-yellow);
+        }
+        
+        .category-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .category-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .category-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(255, 0, 0, 0.8);
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .category-title {
+            color: var(--gs-yellow);
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .sports-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+        
+        .sport-card {
+            position: relative;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: var(--gs-red);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid var(--gs-yellow);
+        }
+        
+        .sport-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+        }
+        
+        .sport-logo {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 15px;
+        }
+        
+        .sport-title {
+            color: var(--gs-yellow);
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+        
+        .gs-logo {
+            display: block;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .footer {
+            background-color: var(--gs-yellow);
+            color: var(--gs-red);
+            padding: 30px 0;
+            margin-top: 30px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+            padding: 0 20px;
+        }
+        
+        .footer-column h3 {
+            color: var(--gs-red);
+            margin-bottom: 20px;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--gs-red);
+            text-decoration: none;
+            transition: color 0.3s ease;
+            font-weight: bold;
+        }
+        
+        .footer-links a:hover {
+            color: #990000;
+            text-decoration: underline;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            background-color: var(--gs-red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gs-yellow);
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: #CC0000;
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+            border-top: 1px solid rgba(255, 0, 0, 0.3);
+            font-weight: bold;
+        }
+        
+        /* Star decoration */
+        .star {
+            position: absolute;
+            color: var(--gs-yellow);
+            font-size: 30px;
+            z-index: 0;
+            opacity: 0.5;
+        }
+        
+        .star:nth-child(1) {
+            top: 50px;
+            left: 10%;
+        }
+        
+        .star:nth-child(2) {
+            top: 150px;
+            right: 15%;
+        }
+        
+        .star:nth-child(3) {
+            bottom: 100px;
+            left: 20%;
+        }
+        
+        .star:nth-child(4) {
+            bottom: 50px;
+            right: 10%;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .categories {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .sports-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-content {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 10px 0;
+            }
+            
+            .logo-section {
+                margin: 0 0 15px 0;
+            }
+            
+            .search-section {
+                width: 90%;
+                margin: 0 auto;
+            }
+            
+            .nav-bar {
+                flex-direction: column;
+                padding: 0;
+            }
+            
+            .nav-menu {
+                flex-direction: column;
+                width: 100%;
+            }
+            
+            .nav-menu li a {
+                text-align: center;
+            }
+            
+            .auth-buttons {
+                margin: 15px 0;
+            }
+            
+            .categories, .sports-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo-section">
+            <div class="logo"></div>
+            <h1 class="site-title">GS HABER</h1>
+        </div>
+        <div class="search-section">
+            <input type="text" class="search-box" placeholder="Arama...">
+            <button class="search-btn">🔍</button>
+        </div>
+    </header>
+    
+    <nav class="nav-bar">
+        <ul class="nav-menu">
+            <li><a href="#">ANA SAYFA</a></li>
+            <li><a href="#">HABER KATAGORİLERİ</a></li>
+            <li><a href="#">HAKKIMIZDA</a></li>
+            <li><a href="#">İLETİŞİME GEÇ</a></li>
+        </ul>
+        <div class="auth-buttons">
+            <button class="auth-btn">GİRİŞ YAP</button>
+            <button class="auth-btn">ÜYE OL</button>
+        </div>
+    </nav>
+    
+    <main class="main-content lion-background">
+        <!-- Decorative stars -->
+        <div class="star">★</div>
+        <div class="star">★</div>
+        <div class="star">★</div>
+        <div class="star">★</div>
+        
+        <section class="featured-news">
+            <h2 class="section-title">ANA HABER</h2>
+            <div class="main-feature">
+                <img src="" height="100" width="150" alt="Galatasaray Ana Haber" class="featured-image">
+            </div>
+            
+            <div class="categories">
+                <div class="category-card">
+                    <img src="" height="100" width="150" alt="Futbol Haberleri" class="category-image">
+                    <div class="category-overlay">
+                        <h3 class="category-title">FUTBOL</h3>
+                    </div>
+                </div>
+                
+                <div class="category-card">
+                    <img src="" height="100" width="150" alt="Voleybol Haberleri" class="category-image">
+                    <div class="category-overlay">
+                        <h3 class="category-title">VOLEYBOL</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="sports-section">
+            <div class="sports-grid">
+                <div class="sport-card">
+                    <div class="sport-logo">
+                        <img src=""  height="100" width="150"alt="Galatasaray Logo" class="gs-logo">
+                    </div>
+                    <h3 class="sport-title">BASKETBOL</h3>
+                </div>
+                
+                <div class="sport-card">
+                    <div class="sport-logo">
+                        <img src=""height="700"width="700"alt="Galatasaray Logo" class="gs-logo">
+                    </div>
+                    <h3 class="sport-title">YÜZME</h3>
+                </div>
+                
+                <div class="sport-card">
+                    <div class="sport-logo">
+                        <img src=""height="100" width="150" alt="Galatasaray Logo" class="gs-logo">
+                    </div>
+                    <h3 class="sport-title">MASA TENİSİ</h3>
+                </div>
+                
+                <div class="sport-card">
+                    <div class="sport-logo">
+                        <img src=""  alt="Galatasaray Logo" class="gs-logo">
+                    </div>
+                    <h3 class="sport-title">BOKS</h3>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Hakkımızda</h3>
+                <p>GS Haber, Galatasaray'ın tüm branşlardaki en güncel haberlerini taraftarlara ulaştıran bağımsız bir haber platformudur.</p>
+                <div class="social-icons">
+                    <a href="#" class="social-icon">f</a>
+                    <a href="#" class="social-icon">t</a>
+                    <a href="#" class="social-icon">i</a>
+                    <a href="#" class="social-icon">y</a>
+                </div>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Hızlı Erişim</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Ana Sayfa</a></li>
+                    <li><a href="#">Futbol</a></li>
+                    <li><a href="#">Basketbol</a></li>
+                    <li><a href="#">Voleybol</a></li>
+                    <li><a href="#">Diğer Branşlar</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>Yararlı Linkler</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Galatasaray Resmi Sitesi</a></li>
+                    <li><a href="#">GS TV</a></li>
+                    <li><a href="#">Galatasaray Store</a></li>
+                    <li><a href="#">Taraftar Grupları</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-column">
+                <h3>İletişim</h3>
+                <ul class="footer-links">
+                    <li>Email: info@gshaber.com</li>
+                    <li>İnstagram: @beytarrm</li>
+                    <li>Adres: İstanbul, Türkiye</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 GS Haber. Tüm hakları saklıdır.</p>
+        </div>
+    </footer>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Arama kutusu fonksiyonalitesi
+            const searchBox = document.querySelector('.search-box');
+            const searchBtn = document.querySelector('.search-btn');
+            
+            searchBtn.addEventListener('click', function() {
+                if (searchBox.value.trim() !== '') {
+                    alert('Arama yapılıyor: ' + searchBox.value);
+                    searchBox.value = '';
+                }
+            });
+            
+            // Enter tuşuna basıldığında arama yapılması
+            searchBox.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && searchBox.value.trim() !== '') {
+                    alert('Arama yapılıyor: ' + searchBox.value);
+                    searchBox.value = '';
+                }
+            });
+            
+            // Spor kartlarına tıklanınca ilgili sayfaya yönlendirme
+            const sportCards = document.querySelectorAll('.sport-card');
+            sportCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const sportTitle = this.querySelector('.sport-title').textContent;
+                    alert(sportTitle + ' sayfasına yönlendiriliyorsunuz...');
+                });
+            });
+            
+            // Kategori kartlarına tıklanınca ilgili sayfaya yönlendirme
+            const categoryCards = document.querySelectorAll('.category-card');
+            categoryCards.forEach(card => {
+                card.addEventListener('click', function() {
+                    const categoryTitle = this.querySelector('.category-title').textContent;
+                    alert(categoryTitle + ' kategorisine yönlendiriliyorsunuz...');
+                });
+            });
+        });
+    </script>
+</body>
+</html>
