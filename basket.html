@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Galatasaray Basketbol - Bilgiler</title>
+    <title>Galatasaray Futbol - Bilgiler</title>
     <style>
         /* Genel Stil ve Sıfırlama */
         * {
@@ -179,6 +179,55 @@
             border-radius: 8px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
+        
+        /* Haber İçerik Kutusu - YENİ EKLENEN KISIM */
+        .news-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .news-image-box {
+            flex: 0 0 300px;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+        }
+        
+        .news-image {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .news-content {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .news-title {
+            color: #A94442;
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+        
+        .news-date {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        
+        .news-text {
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+        
+        .news-author {
+            font-weight: bold;
+            text-align: right;
+        }
 
         /* Footer */
         .footer {
@@ -214,6 +263,14 @@
                 text-align: center;
                 padding: 10px;
             }
+            
+            .news-container {
+                flex-direction: column;
+            }
+            
+            .news-image-box {
+                width: 100%;
+            }
         }
     </style>
 </head>
@@ -240,16 +297,67 @@
         <section class="featured-news">
             <h2 class="section-title">Galatasaray Basketbol Takımı</h2>
             <div class="main-feature">
-                <img src="/api/placeholder/400/320" alt="Galatasaray Basketbol" class="featured-image">
+                <img src="GS.JPG" alt="Galatasaray Basketbol" class="featured-image">
                 <div class="feature-overlay">
                     <h3 class="feature-title">Takım Hakkında</h3>
-                    <p class="feature-desc">Buraya Galatasaray galatasaray takımı ile ilgili bilgilerinizi ekleyebilirsiniz.</p>
+                    <p class="feature-desc">Buraya Galatasaray basketbol takımı ile ilgili bilgilerinizi ekleyebilirsiniz.</p>
                 </div>
             </div>
         </section>
+        
         <section class="info-section">
             <h2 class="section-title">Detaylar</h2>
-            <p>Buraya takım tarihi, başarılar ve oyuncu kadrosu gibi bilgilerinizi yazabilirsiniz.</p>
+            
+            <!-- YENİ EKLENEN HABER KUTUSU -->
+            <div class="news-container">
+                <div class="news-image-box">
+                    <img src="GS.JPG" alt="Maça Doğru | Galatasaray - Rytas Vilnius" class="news-image">
+                </div>
+                <div class="news-content">
+                    <h3 class="news-title">Maça Doğru | Galatasaray - Rytas Vilnius"</h3>
+                    <p class="news-date">17 Mart 2025</p>
+                    <div class="news-text">
+                        <p>Galatasaray Erkek Basketbol Takımımız, Basketbol Şampiyonlar Ligi Top 16 J Grubu 5. maç gününde Rytas Vilnius ile karşı karşıya gelecek. Basketbol Gelişim Merkezi’nde 18 Mart Salı günü oynanacak olan mücadele saat 20.00’de başlayacak. Maç TRT Spor’dan canlı olarak yayınlanacak.
+
+Bilet satın almak için tıklayın!
+
+Takımımız, grupta çıktığı dört maçın ikisinde galip geldi. Rakibine Litvanya’daki ilk maçta 86-66 mağlup olan takımımızda 14.8 sayı ortalamasıyla Will Cummings en skorer oyuncumuz konumunda. Onu 14.4 sayı ve 5.2 ribaunt ortalamasıyla James Palmer takip ediyor. 
+
+Dört maçını ikisini kazanan Rytas ise son olarak Manisa Basketbol’a 98-75 mağlup oldu. RJ Cole 14.8 sayı ortalamasıyla rakibin en skorer ismi olarak dikkat çekiyor. 
+
+                    </div>
+                    <p class="news-author">Galatasaray Spor Kulübü</p>
+                </div>
+            </div>
+            
+            <!-- Başka bir haber eklemek isterseniz aşağıdaki gibi yapabilirsiniz -->
+            <div class="news-container">
+                <div class="news-image-box">
+                    <img src="BRESİMM.JPEG" alt="Maç Analizi" class="news-image">
+                </div>
+                <div class="news-content">
+                    <h3 class="news-title"Beşiktaş Fibabanka 92-77 Galatasaray
+
+
+</h3>
+                    <p class="news-date">17 Mart 2025</p>
+                    <div class="news-text">
+                    <p>Galatasaray Erkek Basketbol Takımımız, Türkiye Sigorta Basketbol Süper Ligi’nin 21. haftasında Beşiktaş Fibabanka ile karşı karşıya geldi. BJK Fibabanka Spor Kompleksi’nde oynanan mücadeleyi ev sahibi takım 92-77 kazandı.
+
+Buğrahan Tuncer, Tyrone Wallece, James Palmer, Michael Young ve Angel Delgado beşiyle başladığımız mücadelede beş basketbolcumuz çift haneli sayı üretti. 
+
+Wallace 20 sayı ve 6 ribauntluk performansıyla en skorer oyuncumuz olurken onu 14 sayı ve 5 asistle Palmer takip etti. Delgado 12 sayı ve 8 ribauntluk katkı verdi. Buğrahan Tuncer 11 sayı, 8 asist; Ebuka Izundu ise 11 sayı ve 7 ribauntla oynadı.
+
+1.P: 28-20
+2.P: 19-22
+3.P: 21-21
+4.P: 24-14</p>
+                        
+                        <p>İkinci paragraf buraya eklenebilir.</p>
+                    </div>
+                    <p class="news-author">GALATASARAY SPOR KULÜBÜ</p>
+                </div>
+            </div>
         </section>
     </main>
     <footer class="footer">
